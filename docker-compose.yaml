@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  go-standard-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: 
+      - .env
+    # Map Some Attachment store directories
+    volumes:
+      - ./folder1:/app/folder1
+    restart: always
+    # Map Port from container to host
+    ports:
+      - 4000:3000
+    networks:
+      - go-standard-network
+networks:
+   go-standard-network:
+    driver: bridge
