@@ -2,7 +2,9 @@ package main
 
 import (
 	"log"
+
 	"webinfo-go/routes"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/monitor"
 )
@@ -13,7 +15,8 @@ func main() {
 	// Add your routes and middleware here
 	app.Get("/dashboard", monitor.New())
 
-	routes.PublicRoutes(app)
+	// Register all routes
+	routes.MapRoutes(app)
 
 	if err := app.Listen(":3000"); err != nil {
 		log.Fatalf("Error starting server: %v", err)

@@ -8,9 +8,9 @@ import (
 )
 
 // PublicRoutes function
-func PublicRoutes(app *fiber.App) {
+func PublicRoutes(route fiber.Router) {
 	// Create a new route group
-	public := app.Group("/api/v1/public")
+	public := route.Group("/v1")
 
 	// Define the routes for the public group
 	public.Get("/health", healthcheck.HealthCheck)
