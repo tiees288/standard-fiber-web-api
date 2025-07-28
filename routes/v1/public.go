@@ -2,7 +2,7 @@
 package routes
 
 import (
-	healthcheck "webinfo-go/services"
+	healthcheck "standard-fiber-go/services"
 
 	"github.com/gofiber/fiber/v2"
 )

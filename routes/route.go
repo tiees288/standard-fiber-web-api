@@ -1,7 +1,7 @@
 package routes
 
 import (
-	v1 "webinfo-go/routes/v1"
+	v1 "standard-fiber-go/routes/v1"
 
 	"github.com/gofiber/fiber/v2"
 )

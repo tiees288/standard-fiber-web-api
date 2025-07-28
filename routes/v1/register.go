@@ -2,9 +2,9 @@
 package routes
 
 import (
-	"webinfo-go/shared/enum"
-	"webinfo-go/shared/models"
-	registerModels "webinfo-go/shared/models/register"
+	"standard-fiber-go/shared/enum"
+	"standard-fiber-go/shared/models"
+	registerModels "standard-fiber-go/shared/models/register"
 
 	"github.com/gofiber/fiber/v2"
 )

@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"webinfo-go/routes"
+	"standard-fiber-go/routes"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/monitor"
