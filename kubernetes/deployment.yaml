@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fiber-info
+  labels:
+    app: fiber-info
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fiber-info
+  template:
+    metadata:
+      labels:
+        app: fiber-info
+    spec:
+      containers:
+      - name: fiber-info
+        image: your-docker-repo/fiber-info:latest # Replace with your image repo
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: fiber-info-config
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+        livenessProbe:
+          httpGet:
+            path: /api/v1/public/health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /api/v1/public/health
+            port: 3000
+          initialDelaySeconds: 2
+          periodSeconds: 5

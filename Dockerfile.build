@@ -1,0 +1,17 @@
+# Use the official Go image as the build environment
+FROM golang:1.22-alpine AS builder
+
+WORKDIR /app
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+RUN go build -o main .
+
+# Use a minimal image for the final container
+FROM alpine:3.19
+WORKDIR /app
+COPY --from=builder /app/main ./main
+EXPOSE 3000
+CMD ["./main"]
