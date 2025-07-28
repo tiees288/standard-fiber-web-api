@@ -1,17 +1,24 @@
-# Use the official Go image as the build environment
-FROM golang:1.22-alpine AS builder
+FROM golang:1.21-alpine AS builder
 
 WORKDIR /app
 
 COPY go.mod go.sum ./
-RUN go mod download
+RUN apk update && apk upgrade && go mod download
 
 COPY . .
 RUN go build -o main .
 
-# Use a minimal image for the final container
 FROM alpine:3.19
 WORKDIR /app
+
+# Update package index and upgrade packages to fix vulnerabilities
+RUN apk update && apk upgrade
+
 COPY --from=builder /app/main ./main
+
+# Create a non-root user
+RUN adduser -D appuser
+USER appuser
+
 EXPOSE 3000
 CMD ["./main"]
