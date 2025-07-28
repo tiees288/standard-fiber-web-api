@@ -2,8 +2,14 @@
 package routes
 
 import (
+	"webinfo-go/shared/enum"
+	"webinfo-go/shared/models"
+	registerModels "webinfo-go/shared/models/register"
+
 	"github.com/gofiber/fiber/v2"
 )
+
+// RegisterUserResp defines the response structure for user registration
 
 // RegisterRoutes function
 func RegisterRoutes(route fiber.Router) {
@@ -12,9 +18,18 @@ func RegisterRoutes(route fiber.Router) {
 	// Define your routes here
 	register.Post("/user", func(c *fiber.Ctx) error {
 		// Handle user registration logic
-		return c.JSON(fiber.Map{
-			"status":  "success",
-			"message": "User registered successfully",
-		})
+		resp := models.BaseResp[*registerModels.RegisterUserResp]{
+			Message: string(enum.Success),
+			Data:    nil, // Data is null initially
+		}
+
+		// // Registration logic here...
+		// // After successful registration, set the user data
+		// resp.Data = &RegisterUserResp{
+		// 	UserID:   "12345",
+		// 	Username: "exampleuser",
+		// }
+
+		return c.JSON(resp)
 	})
 }

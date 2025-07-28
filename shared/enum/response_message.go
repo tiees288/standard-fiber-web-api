@@ -5,5 +5,6 @@ type ResponseMessage string
 
 const (
 	Success      ResponseMessage = "Success"
+	Failure      ResponseMessage = "Fail"
 	DataNotFound ResponseMessage = "Data not found"
 )
