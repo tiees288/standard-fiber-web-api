@@ -13,8 +13,27 @@ services:
     # Map Port from container to host
     ports:
       - 4000:3000
+    depends_on:
+      - postgres
     networks:
       - go-standard-network
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: standard_fiber_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - go-standard-network
+
+volumes:
+  postgres_data:
+
 networks:
    go-standard-network:
     driver: bridge

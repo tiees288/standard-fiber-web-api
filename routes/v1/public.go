@@ -14,4 +14,5 @@ func PublicRoutes(route fiber.Router) {
 
 	// Define the routes for the public group
 	public.Get("/health", healthcheck.HealthCheck)
+	public.Get("/health/database", healthcheck.DatabaseHealthCheck)
 }
